@@ -386,7 +386,7 @@ def main():
     )
 
     while True:
-        with io.open(input("What is the file path for the current table?", mode="r")) as file:
+        with io.open(input("What is the file path for the current table?"), mode="r") as file:
             table_formatter.Run(file.readlines())
             print("Done")
             x = input("Do you want to format another table?").lower()
