@@ -396,3 +396,5 @@ def main():
 
     print("Goodbye.")
     time.sleep(5)
+
+main()
