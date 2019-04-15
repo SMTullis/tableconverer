@@ -33,7 +33,38 @@ class TableFormatter:
             match = self.FindGrade(line)
             if len(match) > 0:
                 rates = self.FindPayRates(line)
-                pass
+
+                pay_dict = {}
+
+                if len(rates) == 3:
+                    pay_dict["WG"] = {
+                        grade:
+                        {
+                            i + 1: rate for i, rate in enumerate(rates[0])
+                        }
+                    }
+                    pay_dict["WL"] = {
+                        grade:
+                        {
+                            i + 1: rate for i, rate in enumerate(rates[1])
+                        }
+                    }
+                    pay_dict["WS"] = {
+                        grade:
+                        {
+                            i + 1: rate for i, rate in enumerate(rates[2])
+                        }
+                    }
+                else:
+                    pay_dict["WS"] = {
+                        grade:
+                        {
+                            i + 1: rate for i, rate in enumerate(rates[0])
+                        }
+                    }
+
+                self.table.Update_Pay_Data(**pay_dict)
+                continue
 
             match = self.FindUSDANo(line)
             if len(match) > 0:
@@ -52,13 +83,12 @@ class TableFormatter:
                 self.table.dod_no = match
                 continue
 
-            match = self.FindState(line):
+            match = self.FindState(line)
             if len(match) > 0:
                 self.table.state = match
                 continue
 
-            match = self.FindEffectiveDate(line):
+            match = self.FindEffectiveDate(line)
             if len(match) > 0:
                 self.table.SetEffectiveDate(match, "%d %B %Y")
                 continue
-            
