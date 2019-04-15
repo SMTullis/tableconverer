@@ -20,7 +20,7 @@ class TableFormatter:
     def Find_Effective_Date(self, line):
         return self.Check_Regex("date", line)
 
-    def Find_State (self):
+    def Find_State(self, line):
         return self.Check_Regex("state", line)
 
     def Find_Grade(self, line):
@@ -70,7 +70,7 @@ class TableFormatter:
                 continue
 
             match = self.Find_USDA_No(line)
-            if match is not None:
+            if len(match) > 0:
                 self.writer.writerows(self.data_table.Export_CSV())
                 self.data_table.Reset()
 
