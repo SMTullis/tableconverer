@@ -376,7 +376,7 @@ def main():
         }
     }
 
-    with io.open(input("What is the output filepath?"), "a+") as out:
+    with io.open(input("What is the output filepath?"), "a+", newline="\n") as out:
         csv_writer = csv.writer(out)
 
         table_formatter = formatter.TableFormatter(
