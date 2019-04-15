@@ -6,33 +6,33 @@ class TableFormatter:
         self.reg = regexes
         self.data_table = table.Table(pay_data)
 
-    def CheckRegex(self, regex, line):
+    def Check_Regex(self, regex, line):
         return self.reg[regex].findall(line)
 
-    def FindUSDANo(self, line):
-        return self.CheckRegex("USDA", line)
+    def Find_USDA_No(self, line):
+        return self.Check_Regex("USDA", line)
 
-    def FindDODNo(self, line):
-        self.CheckRegex("DOD", line)
+    def Find_DOD_No(self, line):
+        self.Check_Regex("DOD", line)
 
-    def FindEffectiveDate(self, line):
-        return self.CheckRegex("date", line)
+    def Find_Effective_Date(self, line):
+        return self.Check_Regex("date", line)
 
-    def FindState (self):
-        return self.CheckRegex("state", line)
+    def Find_State (self):
+        return self.Check_Regex("state", line)
 
-    def FindGrade(self, line):
-        return self.CheckRegex("grade", line)
+    def Find_Grade(self, line):
+        return self.Check_Regex("grade", line)
 
-    def FindPayRates(self, line):
-        return self.CheckRegex("rates", line)
+    def Find_Pay_Rates(self, line):
+        return self.Check_Regex("rates", line)
 
     def Run(self, data):
         for line in data:
             match = None
-            match = self.FindGrade(line)
+            match = self.Find_Grade(line)
             if len(match) > 0:
-                rates = self.FindPayRates(line)
+                rates = self.Find_Pay_Rates(line)
 
                 pay_dict = {}
 
@@ -66,29 +66,29 @@ class TableFormatter:
                 self.table.Update_Pay_Data(**pay_dict)
                 continue
 
-            match = self.FindUSDANo(line)
+            match = self.Find_USDA_No(line)
             if len(match) > 0:
                 out = self.table.Export_CSV()
                 self.table.Reset()
 
                 self.table.usda_no = match
-                dod = self.FindDODNo(line)
+                dod = self.Find_DOD_No(line)
                 if len(dod) > 0:
                     self.table.dod_no = dod
 
                 continue
 
-            match = self.FindDODNo(line)
+            match = self.Find_DOD_No(line)
             if len(match) > 0:
                 self.table.dod_no = match
                 continue
 
-            match = self.FindState(line)
+            match = self.Find_State(line)
             if len(match) > 0:
                 self.table.state = match
                 continue
 
-            match = self.FindEffectiveDate(line)
+            match = self.Find_Effective_Date(line)
             if len(match) > 0:
-                self.table.SetEffectiveDate(match, "%d %B %Y")
+                self.table.Set_Effective_Date(match, "%d %B %Y")
                 continue

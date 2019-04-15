@@ -27,6 +27,6 @@ class Table:
                 for step in self.data[plan][grade].keys():
                     self.data[plan][grade][step] = 0
 
-    def SetEffectiveDate(self, date_string, date_format):
+    def Set_Effective_Date(self, date_string, date_format):
         self.effective_date = datetime.datetime.strptime(date_string, date_format).date()
         self.term_date = self.effective_date + datetime.timedelta(days = 364)
