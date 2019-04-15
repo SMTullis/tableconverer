@@ -1,10 +1,12 @@
+import csv
 import re
 import table
 
 class TableFormatter:
-    def __init__(self, pay_data, **regexes):
+    def __init__(self, pay_data, csv_writer, **regexes):
         self.reg = regexes
         self.data_table = table.Table(pay_data)
+        self.write = csv_writer
 
     def Check_Regex(self, regex, line):
         return self.reg[regex].findall(line)
@@ -68,7 +70,7 @@ class TableFormatter:
 
             match = self.Find_USDA_No(line)
             if len(match) > 0:
-                out = self.table.Export_CSV()
+                self.csv_writer.writerows(self.table.Export_CSV())
                 self.table.Reset()
 
                 self.table.usda_no = match

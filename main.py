@@ -1,3 +1,4 @@
+import csv
 import io
 import re
 import time
@@ -375,13 +376,17 @@ def main():
         }
     }
 
+    with io.open(input("What is the output filepath?"), "a+") as out:
+        csv_writer = csv.writer(out)
+
     table_formatter = formatter.TableFormatter(
         plan_grades,
+        csv_writer,
         **regexes
     )
 
     while True:
-        with io.open(input("What is the file path?", mode="r")) as file:
+        with io.open(input("What is the file path for the current table?", mode="r")) as file:
             table_formatter.Run(file.readlines())
             print("Done")
             x = input("Do you want to format another table?").lower()
