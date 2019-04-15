@@ -75,7 +75,7 @@ class TableFormatter:
 
                 self.data_table.usda_no = match
                 dod = self.Find_DOD_No(line)
-                if len(dod) > 0:
+                if dod is not None:
                     self.data_table.dod_no = dod
 
                 continue
