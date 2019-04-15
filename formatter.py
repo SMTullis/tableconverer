@@ -34,7 +34,7 @@ class TableFormatter:
             match = None
             match = self.Find_Grade(line)
             if len(match) > 0:
-                grade = match[0]
+                grade = int(match[0])
                 rates = self.Find_Pay_Rates(line)
 
                 pay_dict = {}
@@ -43,26 +43,26 @@ class TableFormatter:
                     pay_dict["WG"] = {
                         grade:
                         {
-                            i + 1: rate for i, rate in enumerate(rates[0])
+                            i + 1: float(rates) for i, rate in enumerate(rates[0])
                         }
                     }
                     pay_dict["WL"] = {
                         grade:
                         {
-                            i + 1: rate for i, rate in enumerate(rates[1])
+                            i + 1: float(rates) for i, rate in enumerate(rates[1])
                         }
                     }
                     pay_dict["WS"] = {
                         grade:
                         {
-                            i + 1: rate for i, rate in enumerate(rates[2])
+                            i + 1: float(rates) for i, rate in enumerate(rates[2])
                         }
                     }
                 else:
                     pay_dict["WS"] = {
                         grade:
                         {
-                            i + 1: rate for i, rate in enumerate(rates[0])
+                            i + 1: float(rates) for i, rate in enumerate(rates[0])
                         }
                     }
 
