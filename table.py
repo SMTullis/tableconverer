@@ -19,3 +19,9 @@ class Table:
             ]
             for plan in self.data for grade in self.data[plan] for step in self.data[plan][grade]
         ]
+
+    def Reset(self):
+        for plan in self.data.keys():
+            for grade in self.data[plan].keys():
+                for step in self.data[plan][grade].keys():
+                    self.data[plan][grade][step] = 0
