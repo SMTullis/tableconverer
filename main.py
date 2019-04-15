@@ -1,4 +1,6 @@
+import io
 import re
+import time
 
 import formatter
 
@@ -377,3 +379,15 @@ def main():
         plan_grades,
         **regexes
     )
+
+    while True:
+        with io.open(input("What is the file path?", mode="r")) as file:
+            table_formatter.Run(file.readlines())
+            print("Done")
+            x = input("Do you want to format another table?").lower()
+
+        if x in ("no", "n", "q", "quit"):
+            break
+
+    print("Goodbye.")
+    time.sleep(5)
