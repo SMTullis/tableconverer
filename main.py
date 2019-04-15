@@ -379,20 +379,20 @@ def main():
     with io.open(input("What is the output filepath?"), "a+") as out:
         csv_writer = csv.writer(out)
 
-    table_formatter = formatter.TableFormatter(
-        plan_grades,
-        csv_writer,
-        **regexes
-    )
+        table_formatter = formatter.TableFormatter(
+            plan_grades,
+            csv_writer,
+            **regexes
+        )
 
-    while True:
-        with io.open(input("What is the file path for the current table?"), mode="r") as file:
-            table_formatter.Run(file.readlines())
-            print("Done")
-            x = input("Do you want to format another table?").lower()
+        while True:
+            with io.open(input("What is the file path for the current table?"), mode="r") as file:
+                table_formatter.Run(file.readlines())
+                print("Done")
+                x = input("Do you want to format another table?").lower()
 
-        if x in ("no", "n", "q", "quit"):
-            break
+            if x in ("no", "n", "q", "quit"):
+                break
 
     print("Goodbye.")
     time.sleep(5)
