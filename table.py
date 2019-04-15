@@ -4,6 +4,7 @@ class Table:
     def __init__(self, pay_data):
         self.id_usda = ""
         self.id_dod = ""
+        self.state = ""
         self.effective_date = None
         self.term_date = None
         self.data = pay_data
