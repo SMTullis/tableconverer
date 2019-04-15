@@ -43,26 +43,26 @@ class TableFormatter:
                     pay_dict["WG"] = {
                         grade:
                         {
-                            i + 1: float(rates) for i, rate in enumerate(rates[0])
+                            i + 1: float(rate) for i, rate in enumerate(rates[0])
                         }
                     }
                     pay_dict["WL"] = {
                         grade:
                         {
-                            i + 1: float(rates) for i, rate in enumerate(rates[1])
+                            i + 1: float(rate) for i, rate in enumerate(rates[1])
                         }
                     }
                     pay_dict["WS"] = {
                         grade:
                         {
-                            i + 1: float(rates) for i, rate in enumerate(rates[2])
+                            i + 1: float(rate) for i, rate in enumerate(rates[2])
                         }
                     }
                 else:
                     pay_dict["WS"] = {
                         grade:
                         {
-                            i + 1: float(rates) for i, rate in enumerate(rates[0])
+                            i + 1: float(rate) for i, rate in enumerate(rates[0])
                         }
                     }
 
