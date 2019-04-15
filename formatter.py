@@ -33,7 +33,7 @@ class TableFormatter:
         for line in data:
             match = None
             match = self.Find_Grade(line)
-            if match is not None:
+            if len(match) > 0:
                 grade = match
                 rates = self.Find_Pay_Rates(line)
 
