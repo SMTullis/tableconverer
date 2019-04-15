@@ -34,7 +34,7 @@ class TableFormatter:
             match = None
             match = self.Find_Grade(line)
             if len(match) > 0:
-                grade = match
+                grade = match[0]
                 rates = self.Find_Pay_Rates(line)
 
                 pay_dict = {}
