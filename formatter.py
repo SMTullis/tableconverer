@@ -74,24 +74,25 @@ class TableFormatter:
                 self.writer.writerows(self.data_table.Export_CSV())
                 self.data_table.Reset()
 
-                self.data_table.usda_no = match
+                self.data_table.id_usda = match[0]
                 dod = self.Find_DOD_No(line)
                 if dod is not None:
-                    self.data_table.dod_no = dod
+                    self.data_table.id_dod = dod[0]
 
                 continue
 
             match = self.Find_DOD_No(line)
-            if match is not None:
-                self.data_table.dod_no = match
+            if len(match) > 0:
+                self.data_table.id_dod = match[0]
                 continue
 
             match = self.Find_State(line)
-            if match is not None:
-                self.data_table.state = match
+            if len(match) > 0:
+                print(match)
+                self.data_table.state = match[0]
                 continue
 
             match = self.Find_Effective_Date(line)
-            if match is not None:
-                self.data_table.Set_Effective_Date(match, "%d %B %Y")
+            if len(match) > 0:
+                self.data_table.Set_Effective_Date(match[0], "%d %B %Y")
                 continue
