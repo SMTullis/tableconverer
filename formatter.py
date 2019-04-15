@@ -33,7 +33,7 @@ class TableFormatter:
         for line in data:
             match = None
             match = self.Find_Grade(line)
-            if len(match) > 0:
+            if match is not None:
                 rates = self.Find_Pay_Rates(line)
 
                 pay_dict = {}
@@ -69,7 +69,7 @@ class TableFormatter:
                 continue
 
             match = self.Find_USDA_No(line)
-            if len(match) > 0:
+            if match is not None:
                 self.writer.writerows(self.data_table.Export_CSV())
                 self.data_table.Reset()
 
@@ -81,16 +81,16 @@ class TableFormatter:
                 continue
 
             match = self.Find_DOD_No(line)
-            if len(match) > 0:
+            if match is not None:
                 self.data_table.dod_no = match
                 continue
 
             match = self.Find_State(line)
-            if len(match) > 0:
+            if match is not None:
                 self.data_table.state = match
                 continue
 
             match = self.Find_Effective_Date(line)
-            if len(match) > 0:
+            if match is not None:
                 self.data_table.Set_Effective_Date(match, "%d %B %Y")
                 continue
