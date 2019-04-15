@@ -1,17 +1,21 @@
+import csv
+import io
 import re
 
 import formatter
 
 def test():
-    usda_no = re.compile(".*?USDA# (\d{4})")
-    dod_no = re.compile(".*?AC-(\d{4})")
-    state = re.compile(".*?for the [\w\s]+?, (\w+)")
-    effective_date = re.compile(".*?Effective Date: ([\s\w]+)")
+    usda_no = re.compile("USDA# (\d{4})")
+    dod_no = re.compile("AC-(\d{4})")
+    state = re.compile("for the [\w\s]+?, (\w+)")
+    effective_date = re.compile("Effective Date: ([\s\w]+)")
 
     grade = re.compile("^.+?(?:WS-)(\d{1,2})")
     pay_rates = re.compile("(?:\s+?\d{1,2})? ([\d\.]+)\s+?([\d\.]+)\s+?([\d\.]+)\s+?([\d\.]+)\s+?([\d\.]+)\s+?")
 
     form = formatter.TableFormatter(
+        dict(),
+        csv.writer(io.open("test.csv", "w+")),
         USDA = usda_no,
         DOD = dod_no,
         state = state,
@@ -32,11 +36,11 @@ def test():
     ]
 
     for entry in data:
-        print(form.CheckRegex("USDA", entry))
-        print(form.CheckRegex("DOD", entry))
-        print(form.CheckRegex("state", entry))
-        print(form.CheckRegex("date", entry))
-        print(form.CheckRegex("grade", entry))
-        print(form.CheckRegex("rates", entry))
+        print(form.Check_Regex("USDA", entry))
+        print(form.Check_Regex("DOD", entry))
+        print(form.Check_Regex("state", entry))
+        print(form.Check_Regex("date", entry))
+        print(form.Check_Regex("grade", entry))
+        print(form.Check_Regex("rates", entry))
 
 test()
