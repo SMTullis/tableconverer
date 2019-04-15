@@ -6,7 +6,7 @@ class TableFormatter:
     def __init__(self, pay_data, csv_writer, **regexes):
         self.reg = regexes
         self.data_table = table.Table(pay_data)
-        self.write = csv_writer
+        self.writer = csv_writer
 
     def Check_Regex(self, regex, line):
         return self.reg[regex].findall(line)
@@ -65,32 +65,32 @@ class TableFormatter:
                         }
                     }
 
-                self.table.Update_Pay_Data(**pay_dict)
+                self.data_table.Update_Pay_Data(**pay_dict)
                 continue
 
             match = self.Find_USDA_No(line)
             if len(match) > 0:
-                self.csv_writer.writerows(self.table.Export_CSV())
-                self.table.Reset()
+                self.writer.writerows(self.data_table.Export_CSV())
+                self.data_table.Reset()
 
-                self.table.usda_no = match
+                self.data_table.usda_no = match
                 dod = self.Find_DOD_No(line)
                 if len(dod) > 0:
-                    self.table.dod_no = dod
+                    self.data_table.dod_no = dod
 
                 continue
 
             match = self.Find_DOD_No(line)
             if len(match) > 0:
-                self.table.dod_no = match
+                self.data_table.dod_no = match
                 continue
 
             match = self.Find_State(line)
             if len(match) > 0:
-                self.table.state = match
+                self.data_table.state = match
                 continue
 
             match = self.Find_Effective_Date(line)
             if len(match) > 0:
-                self.table.Set_Effective_Date(match, "%d %B %Y")
+                self.data_table.Set_Effective_Date(match, "%d %B %Y")
                 continue
