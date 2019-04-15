@@ -6,6 +6,8 @@ class TableFormatter:
 
     def MatchLine(self, line):
         for regex in self.reg:
-            x = regex.match(line)
+            x = regex.findall(line)
+            if len(x) > 0:
+                return x
 
         return x
