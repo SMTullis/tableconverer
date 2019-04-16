@@ -16,7 +16,7 @@ class Table:
 
     def Export_CSV(self):
         return [
-            [self.id_dod, self.id_usda, self.effective_date, self.term_date, plan, grade, step, self.data[plan][grade][step]
+            [self.id_dod, self.state, self.id_usda, self.effective_date, self.term_date, plan, grade, step, self.data[plan][grade][step]
             ]
             for plan in self.data for grade in self.data[plan] for step in self.data[plan][grade]
         ]
