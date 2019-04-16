@@ -39,33 +39,34 @@ class TableFormatter:
             if len(match) > 0:
                 grade = int(match[0])
                 rates = self.Find_Pay_Rates(line)
+                print(rates)
 
                 pay_dict = {}
 
-                if len(rates) == 3:
+                if len(rates) == 15:
                     pay_dict["WG"] = {
                         grade:
                         {
-                            i + 1: float(rate) for i, rate in enumerate(rates[0])
+                            i + 1: float(rate) for i, rate in enumerate(rates[0:5])
                         }
                     }
                     pay_dict["WL"] = {
                         grade:
                         {
-                            i + 1: float(rate) for i, rate in enumerate(rates[1])
+                            i + 1: float(rate) for i, rate in enumerate(rates[5:10])
                         }
                     }
                     pay_dict["WS"] = {
                         grade:
                         {
-                            i + 1: float(rate) for i, rate in enumerate(rates[2])
+                            i + 1: float(rate) for i, rate in enumerate(rates[10:15])
                         }
                     }
                 else:
                     pay_dict["WS"] = {
                         grade:
                         {
-                            i + 1: float(rate) for i, rate in enumerate(rates[0])
+                            i + 1: float(rate) for i, rate in enumerate(rates)
                         }
                     }
 

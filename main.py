@@ -12,7 +12,7 @@ def main():
         "state": re.compile("for the [\w\s]+?, (\w+)"),
         "date": re.compile("Effective Date: ([\w ]+)"),
         "grade": re.compile("(?=.*\d{1,3}\.\d{2}(?:[]\s\*]+)\d{1,3}\.\d{2})^.+?(?:WS-)?(\d{1,2})"),
-        "rates": re.compile("(?:\s+?\d{1,2})? ?\*?([\d\.]+)\s+?\*?([\d\.]+)\s+?\*?([\d\.]+)\s+?\*?([\d\.]+)\s+?\*?([\d\.]+)\s+?")
+        "rates": re.compile("(\d{1,3}\.\d{2})")
     }
 
     plan_grades = {
