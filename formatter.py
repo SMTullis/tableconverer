@@ -30,6 +30,9 @@ class TableFormatter:
         return self.Check_Regex("rates", line)
 
     def Run(self, data):
+        self.writer.writerow(
+            ["DOD_NO", "STATE", "USDA_NO", "EFFECTIVE_DATE", "TERM_DATE", "PLAN", "GRADE", "STEP", "RATE"]
+        )
         for line in data:
             match = None
             match = self.Find_Grade(line)
