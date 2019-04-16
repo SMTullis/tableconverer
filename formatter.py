@@ -96,3 +96,6 @@ class TableFormatter:
             if len(match) > 0:
                 self.data_table.Set_Effective_Date(match[0], "%d %B %Y")
                 continue"""
+
+        self.writer.writerows(self.data_table.Export_CSV())
+        self.data_table.Reset()
