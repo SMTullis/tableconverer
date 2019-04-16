@@ -82,17 +82,18 @@ class TableFormatter:
                 continue
 
             match = self.Find_DOD_No(line)
+            print("DoD regex: ", match)
             if len(match) > 0:
                 self.data_table.id_dod = match[0]
                 continue
 
             match = self.Find_State(line)
             if len(match) > 0:
-                print(match)
                 self.data_table.state = match[0]
                 continue
 
-            match = self.Find_Effective_Date(line)
+            """match = self.Find_Effective_Date(line)
+            print("Effective date regex: ", match[0])
             if len(match) > 0:
                 self.data_table.Set_Effective_Date(match[0], "%d %B %Y")
-                continue
+                continue"""
