@@ -15,7 +15,7 @@ class TableFormatter:
         return self.Check_Regex("USDA", line)
 
     def Find_DOD_No(self, line):
-        self.Check_Regex("DOD", line)
+        return self.Check_Regex("DOD", line)
 
     def Find_Effective_Date(self, line):
         return self.Check_Regex("date", line)
@@ -76,13 +76,12 @@ class TableFormatter:
 
                 self.data_table.id_usda = match[0]
                 dod = self.Find_DOD_No(line)
-                if dod is not None:
+                if len(dod) > 0:
                     self.data_table.id_dod = dod[0]
 
                 continue
 
             match = self.Find_DOD_No(line)
-            print("DoD regex: ", match)
             if len(match) > 0:
                 self.data_table.id_dod = match[0]
                 continue
