@@ -91,11 +91,10 @@ class TableFormatter:
                 self.data_table.state = match[0]
                 continue
 
-            """match = self.Find_Effective_Date(line)
-            print("Effective date regex: ", match[0])
+            match = self.Find_Effective_Date(line)
             if len(match) > 0:
                 self.data_table.Set_Effective_Date(match[0], "%d %B %Y")
-                continue"""
+                continue
 
         self.writer.writerows(self.data_table.Export_CSV())
         self.data_table.Reset()
